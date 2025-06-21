@@ -1,6 +1,6 @@
 # NGN to USD Exchange Rate Application
 
-A simple Python web application that fetches and displays the current exchange rate between Nigerian Naira (NGN) and US Dollar (USD) in real-time.
+This is simple Python web application I built that fetches and displays the current exchange rate between Nigerian Naira (NGN) and US Dollar (USD) in real-time.
 
 ## Features
 
@@ -58,12 +58,12 @@ cicd-python-application/
 
 1. **Build the Docker image**
    ```bash
-   docker build -t exchange-rate-app .
+   docker build -t username/exchange-rate-app .
    ```
 
 2. **Run the container**
    ```bash
-   docker run -p 5000:5000 exchange-rate-app
+   docker run -p 5000:5000 username/exchange-rate-app
    ```
 
 3. **Access the application**
