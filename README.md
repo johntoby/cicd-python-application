@@ -117,7 +117,32 @@ The application handles various error scenarios:
 The application is containerized using Docker for consistent deployment across environments.
 
 ### CI/CD Pipeline
-The Application has been integrated with GitHub Actions for automated testing, building the docker image, and deploying to AWS EC2. The image will be properly versioned, tagged and pushed to docker hub.
+Automated deployment pipeline using GitHub Actions that:
+- Builds and tags Docker images on every push to main branch
+- Pushes images to Docker Hub with `latest` and commit SHA tags
+- Deploys containerized application to AWS EC2 instance
+- Ensures zero-downtime deployment with container restart policies
+
+#### Required GitHub Secrets:
+- `DOCKER_USERNAME` - Docker Hub username
+- `DOCKER_PASSWORD` - Docker Hub password/token
+- `EC2_HOST` - AWS EC2 instance IP address
+- `EC2_USERNAME` - EC2 SSH username (ec2-user/ubuntu)
+- `EC2_SSH_KEY` - Private SSH key for EC2 access
+
+#### Pipeline Workflow:
+1. **Build Stage**: Creates Docker image from source code
+2. **Push Stage**: Uploads tagged images to Docker Hub registry
+3. **Deploy Stage**: SSH into EC2, pulls latest image, and restarts container
+
+The application runs on port 80 of the EC2 instance after successful deployment.
+
+![success](<Screenshot (643)-1.png>)
+
+![pipeline success](<Screenshot (644)-1.png>)
+
+![application running on port 80](<Screenshot (645).png>)
+
 
 
 ## Contributing
